@@ -3,7 +3,7 @@
 Pizza is a command line application that interacts with the Pizza API. Download it and run it from any local file location, using the syntax outlined below
 
 ### Command Line
-pizza <--operation> <parameters>
+pizza --operation parameters
 
 #### Operations
 * getPizzas
@@ -24,3 +24,10 @@ pizza <--operation> <parameters>
 * pi pizzaId
 * ti toppingId
 * h  help
+
+#### Samples
+pizza --getPizzas
+pizza --getpizza -pi:3
+pizza --getpizza 3
+pizza --addtoppingtopizza -pi:3 -ti:12
+pizza --addtoppingtopizza 3 12
