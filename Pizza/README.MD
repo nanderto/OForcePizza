@@ -27,7 +27,11 @@ pizza --operation parameters
 
 #### Samples
 pizza --getPizzas
+
 pizza --getpizza -pi:3
+
 pizza --getpizza 3
+
 pizza --addtoppingtopizza -pi:3 -ti:12
+
 pizza --addtoppingtopizza 3 12
