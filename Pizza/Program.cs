@@ -37,8 +37,6 @@
             //args = new string[] { "--gettoppingsforpizza", "-pi:9" };
             //args = new string[] { "-h" };
 
-            //bool show_help = false;
-
             var result = ParseArguments(args);
 
             OptionSet p = result.p;
