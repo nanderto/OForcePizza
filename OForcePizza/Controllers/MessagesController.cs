@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using OForcePizza.Dialogs;
 
 namespace OForcePizza
 {
@@ -14,18 +15,34 @@ namespace OForcePizza
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
         /// </summary>
-        public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        //public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
+        //{
+        //    if (activity.Type == ActivityTypes.Message)
+        //    {
+        //        await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+        //    }
+        //    else
+        //    {
+        //        HandleSystemMessage(activity);
+        //    }
+
+        //    var response = Request.CreateResponse(HttpStatusCode.OK);
+        //    return response;
+        //}
+
+        public virtual async Task<HttpResponseMessage> Post([FromBody] Activity activity)
         {
-            if (activity.Type == ActivityTypes.Message)
+            // Check if activity is of type message
+            if (activity != null && activity.GetActivityType() == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                await Conversation.SendAsync(activity, () => new EchoDialog());
             }
             else
             {
                 HandleSystemMessage(activity);
             }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+
+            return new HttpResponseMessage(System.Net.HttpStatusCode.Accepted);
         }
 
         private Activity HandleSystemMessage(Activity message)
